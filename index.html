@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moodle 2.1</title>
+    <title>Eksempel 1</title>
+    <link rel="stylesheet" href="styles.css">
+   
 </head>
 <body>
     <button>Ingen Layout</button>
@@ -12,16 +14,17 @@
     <button>Grid Layout</button>
 
     <h1>Eksempel 1</h1>
-
-    <div style="background-color: rgb(138, 189, 61);">Verktøy</div>
-    <div>
+    <div class="card">
+    <div class="header green">
+        Verktøy</div>
+    <div class="innerCard">
         De to viktigste verktøyene vi skal bruke er disse:
         <ul>
             <li>
                 Koderedigeringsprogrammet 
                 <a href="https://code.visualstudio.com/">
                         Visual Studio Code</a>
-                ><br>
+                <br>
                 Vi skal bruke noen <i>extensions</i>:
                 <ul>
                     <li>JavaScript-booster</li>
@@ -34,25 +37,29 @@
         </ul>
         Nettleseren <a href="https://www.google.no/">Google Chrome</a>
     </div>
-
-    <div>HTML</div>
-    <div>
+    </div>
+    <div class="card">
+    <div class="header blue">
+        HTML</div>
+    <div class="innerCard">
         Vi bruker HTML til å definere et dokument.
         <ul>
             <li>Tagger for grunnleggende oppsett av en HTML-fil</li>
             <li>Tagger for grunnleggende formatering av tekst</li>
-            <li>< div ></li>
-            <li>< input type="tekst" ></li>
-            <li>< button ></li>
+            <li>&lt; div &gt;</li>
+            <li>&lt; input type="tekst" &gt;</li>
+            <li>&lt; button &gt;</li>
             <li><a href="https://www.w3schools.com/html/default.asp">
                 W3Schools HTML Tutorial</a></li>
             <li><a href="https://www.w3schools.com/tags/default.asp">
                 W3Schools HTML Referanse</a></li>
         </ul>
     </div>
-
-    <div>CSS</div>
-    <div>
+    </div>
+    <div class="card">
+    <div class="header red">
+        CSS</div>
+    <div class="innerCard">
         Vi bruker CSS til å <i>style</i> et dokument, altså farger, 
         fonter, utseende og lignende.
         <ul>
@@ -73,9 +80,11 @@
                 W3Schools CSS Referanse</a></li>
         </ul>
     </div>
-
-    <div>JavaScript</div>
-    <div>
+    </div>
+    <div class="card">
+    <div class="header yellow">
+        JavaScript</div>
+    <div class="innerCard">
         Det viktigste vi skal lære er programmeringsspråket JavaScript. 
         Vi skal lære grunnleggende  programmering ved å manipulere HTTML- og 
         CSS-kode på en nettside ved hjelp av JavaScript.
@@ -85,6 +94,14 @@
             <li><a href="https://www.w3schools.com/jsref/default.asp">
                 W3Schools JavaScript Referanse</a></li>
         </ul>
+    </div>
+    </div>
+    <div class="card">
+    <div class="header black">
+        Hode, kropp og ben</div>
+        <div class="innerCard">
+
+        </div>
     </div>
 </body> 
 </html>
