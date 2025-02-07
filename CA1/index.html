@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="currentNum">0</div>
+
+    <button onclick="addNum(2)">2</button>
+    <button onclick="addNum(3)">3</button>
+    <button onclick="addNum(9)">9</button>
+    
+    <script>
+        var outputDiv = document.getElementById('currentNum');
+        var num = 0;
+        let winningNumber = 55;
+
+        function addNum(numberInput) {
+            // let div = document.getElementById('currentNum')
+            num += parseInt(numberInput);
+            if(num == winningNumber){
+                outputDiv.innerHTML = num + 'Du vant!';
+            }
+            else if(num > numberInput){ 
+                outputDiv.innerHTML = num + 'Du gikk over tallet!';
+            }
+            else{
+                outputDiv.innerHTML = num + 'fortsett med å velge ett tall!';
+            }
+            
+        }
+        
+        function add3() {
+            num += 3 ;
+            outputDiv.innerHTML = num; 
+        }
+        
+        function add9() {
+            num += 9 ;
+            outputDiv.innerHTML = num; 
+        }
+          
+    </script>
+</body>
+</html>

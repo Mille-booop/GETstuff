@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisuellTeller</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <button onclick="addToNum(0)">mer</button>
+    <button onclick="takeAwayFromNum(0)">mindre</button>
+
+    <script>
+        var outputDiv = document.getElementById('output');
+        var num = 0;
+
+        function setNum(selectedNum) {
+            num = selectedNum;
+            outputDiv.innerHTML = num;
+        }
+
+        function  addToNum() {
+            num ++;
+            outputDiv.innerHTML = num;
+        }
+        function  takeAwayFromNum() {
+            num --;
+            outputDiv.innerHTML = num;
+        }
+        function showNum(){
+            document.getElementById('num').innerHTML = num;
+        }
+
+    </script>
+</body>
+</html>

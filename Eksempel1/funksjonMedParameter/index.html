@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: solid;
+            color: black;
+            background-color: blue;
+            width: 500px;
+            height: 200px;
+            text-align: center;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myDiv">
+        Jeg kan endre meg, visste du det?
+    </div>
+
+    <button onclick="changeLayout('lightgray', 'Kan du se meg nå?', '20%')">Kameleon</button> <!--blende inn-->
+    <button onclick="changeLayout('white', 'Her er jeg!', '50%')">Blekksprut</button> <!--usynlig-->
+
+    <script>
+        function changeLayout(color, tekst, scale) {
+            let div = document.getElementById('myDiv');
+            div.style.backgroundColor = color;
+            div.innerText = tekst;
+            div.style.scale = scale;
+        }
+    </script>
+</body>
+
+</html>

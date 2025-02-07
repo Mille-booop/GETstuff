@@ -2,6 +2,22 @@ body {
     margin-left: 20px;
 }
 
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.horisontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
 .card {
     width:500px;
     background-color: lightgray;
