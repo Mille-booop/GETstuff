@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <button onclick="startTimer">GO</button>
-    <button onclick="newLAP">LAP</button>
-    <button onclick="resetTimer">RESET</button>
+    <div class="buttons">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+        <button onclick="stopTimer()">Time</button>
+        <div id="app"></div>
+        <div id="laptime"></div>
+    </div>
 
     <script>
+        const app = document.getElementById('app');
+        const laptime = document.getElementById('laptime');
+        let seconds = 0;
+        var timer;
+
+
         setTimeout((startTimer) => {
-            
+
         }, timeout);
 
         function startTimer() {
+            setInterval(countSeconds, 1000)
+        }
 
-        };
+        function countSeconds() {
+            app.innerHTML = seconds;
+            seconds++;
+        }
 
-        clearTimeout;
-
-        setInterval((newLAP) => {
-            
-        }, interval);
-
-        function newLAP() {
-
-        };
-
-        clearInterval;
+        function stopTimer() {
+            laptime.innerHTML += `<li>${seconds - 1} sekunder</li>`;
+            clearInterval(timer);
+            seconds = 0;
+        }
 
         function resetTimer() {
-
-        };
+            location.reload();
+        }
     </script>
 </body>
+
 </html>
