@@ -16,28 +16,64 @@
     </style>
 </head>
 <body>
+    
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
 
         <button onclick="turnRed()">red</button>
-        <button onclick="turnRedAndYellow()">red and yellow</button>
+        <button onclick="turnYellow()">yellow</button>
         <button onclick="turnGreen()">green</button>
+        <button onclick="trafficLightCycle()">Start</button>
     <script>
+
         function turnRed() {
             let dots = document.querySelectorAll(".dot");
-            dots.forEach(dot => {
-            dot.style.backgroundColor = "red";
-        });
-        }
-        function turnRedAndYellow() {
-            let dots = document.querySelectorAll(".dot");
-            if (dots)
+            dots.forEach(dot => 
+            dot.style.backgroundColor = "lightgray");
+            if (dots.length > 2) 
             dots[0].style.backgroundColor = "red";
-            dots[1].style.backgroundColor = "yellow";
-        }
-        function turnGreen() {
+            }
 
+        function turnYellow() {
+            let dots = document.querySelectorAll(".dot");
+            dots.forEach(dot => 
+            dot.style.backgroundColor = "lightgray");
+            if (dots.length > 2) 
+            dots[1].style.backgroundColor = "yellow";
+            }
+            
+        function turnGreen() {
+            let dots = document.querySelectorAll(".dot");
+            dots.forEach(dot =>
+            dot.style.backgroundColor = "lightgray");
+            dots[2].style.backgroundColor = "green";
+            }
+
+        function trafficLightCycle() {
+            let dots = document.querySelectorAll(".dot");
+            if (dots.length < 3) return;
+            dots.forEach(dot => 
+            dot.style.backgroundColor = "lightgray");
+
+            dots[0].style.backgroundColor = "red";
+
+            setTimeout(() => {
+                dots[1].style.backgroundColor = "yellow"
+            }, 2000);
+
+            setTimeout(() => {
+                dots[2].style.backgroundColor = "green"
+            }, 4000);
+
+            setTimeout(() => {
+                dots[0].style.backgroundColor = "red"
+            }, 6000);
+
+            setTimeout(() => {
+                dots[1].style.backgroundColor = "yellow"
+            }, 8000);
+            
         }
         
     </script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrokodilleSpill</title>
+    <style>
+        #gameContainer {
+            text-align: center;
+            margin-top: 25px;
+        }
+        #result {
+            font-size: small;
+        }
+        #score {
+            font-size: medium;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+    <img src="krokodilleSpill(1).png" alt="KrokodilleSpill" width="300">
+    <h2>Hvilket tegn må krokodillen bruke her?</h2>
+    <div id="mathProblem"></div>
+    <button onclick="checkAnswer()">Submit</button>
+    <button onclick="resetGame()">Reset</button>
+    
+    <div id="score">Poeng: 0</div>
+    <div id="result"></div>
+    
+</div>
+
+<script>
+    let score = 0;
+    let num1, num2, correctOperator;
+    
+    function generateMathProblem() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            let operators = ['=','<','>'];
+            
+            correctOperator = num1 > num2 ? '>' : num1 < num2 ? '<' : '=';
+            document.getElementById('mathProblem').innerHTML = `
+            ${num1}<br><input type="text" id="answerInput" text-align: center placeholder ="Bruk <, > eller ="> <br>${num2}
+            `;
+        }
+            
+            function checkAnswer() {
+            let playerAnswer = document.getElementById('answerInput').value.trim();
+            let isCorrect = false;
+
+            if (num1 < num2 && playerAnswer === '<') {
+                isCorrect = true;
+            } else if (num1 > num2 && playerAnswer === '>') {
+                isCorrect = 'true';
+            } else if (num1 === num2 && playerAnswer === '=') {
+                isCorrect = 'true';
+            }
+        
+            if (isCorrect) {
+                score ++;
+                document.getElementById('result').innerHTML = "Bra jobba!"
+            } else {
+                score --;
+                document.getElementById('result').innerHTML = "Prøv igjen!"
+            }
+            
+            document.getElementById('score').innerHTML = `Poeng: ${score}`;
+            document.getElementById('answerInput').value = '';
+            generateMathProblem();
+        }
+
+            function resetGame() {
+                score = 0;
+                document.getElementById('score').innerHTML = `Poeng: ${score}`;
+                document.getElementById('result').innerHTML = '';
+                document.getElementById('answerInput').value = '';
+                generateMathProblem();
+            }
+            generateMathProblem();
+
+    </script>
+</body>
+</html>

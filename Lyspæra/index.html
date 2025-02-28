@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <style>
+    .dot {
+        height: 300px;
+        width: 300px;
+        margin: 10%;
+        border: 5px;
+        background-color: lightgray;
+        text-align: center;
+
+    }
+ </style>
+<body>
+    <div class="dot"><p id="statusText">Lyset er av</p></div>
+
+    <button onclick="turnOnLightBulb()">Skru av og på lyset</button>
+<script>
+    function turnOnLightBulb() {
+        let lightBulb = document.querySelector('.dot');
+        let statusText = document.getElementById('statusText');
+
+        if (lightBulb.style.backgroundColor === 'yellow') {
+            lightBulb.style.backgroundColor = 'lightgray';
+            statusText.textContent = 'Lyset er av';
+        }
+        else {
+            lightBulb.style.backgroundColor = 'yellow';
+            statusText.textContent = 'Lyset er på'
+        }
+    }
+
+</script>
+</body>
+</html>
