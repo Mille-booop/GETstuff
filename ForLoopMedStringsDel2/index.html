@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverser Teksten</title>
+    <style>
+        body {
+            font-family: arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: aliceblue;
+        }
+
+        .container {
+            text-align: center;
+            background: lightgrey;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px grey;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: lightblue;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: grey;
+        }
+
+        .resultat {
+            font-size: medium;
+            margin-top: 10px;
+            color: black;
+            white-space: pre-wrap;
+        }
+
+        .reversert {
+            margin-top: 10px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reverser teksten din</h1>
+        <input type="text" id="tekstInput" placeholder="Skriv hva du vil">
+        <button onclick="reverserTekst()">Reverser</button>
+        <p id="resultat" class="resultat"></p>
+        <p id="reversertTekst" class="reversert"></p>
+    </div>
+
+    <script>
+        window.onload = function() {
+
+            function reverserTekst() {
+                let tekst = document.getElementById("tekstInput").value;
+                if (tekst.trim() === "") {
+                    document.getElementById("resultat").innerText = "Skriv  noe først";
+                    document.getElementById("reversertTekst").innerText = "";
+                    return;
+                }
+                
+                let reversertTekst = "";
+                
+                for (let bokstav of tekst) {
+                    reversertTekst = bokstav + reversertTekst;
+                } 
+                
+                document.getElementById("resultat").innerText = "Opprinnelig tekst:" + tekst;
+                document.getElementById("reversertTekst").innerText = "Reversert tekst:" + reversertTekst;
+            }
+                document.querySelector("button").onclick = reverserTekst;
+        }
+    </script>
+</body>
+</html>

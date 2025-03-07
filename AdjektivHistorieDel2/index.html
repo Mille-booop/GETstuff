@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjektiv historie</title>
+  <style>
+  body {
+    font-family: Arial;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    margin: auto;
+  }
+  .buttonContainer {
+    text-align: center;
+  }
+  .story {
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px grey;
+    max-width: 400;
+    margin: auto;
+    height: 100px;    
+    text-align: center;
+  }
+  .story p {
+    font-size: medium;
+  }
+  button {
+    background-color: aliceblue;
+    user-select: none;
+    color: lightskyblue;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+    margin: auto;
+    border: 1px solid lightgray
+  }
+  button:hover {
+    background-color: mediumblue;
+  }
+  .selected {
+    border: 1px solid black;
+  }
+</style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+      //Model
+      let state = {
+        choices: {
+          green: "___",
+          red: "___",
+          cat: "___",
+          man: "___",
+          stand: "___",
+          jumped: "___",
+          poll: "___",
+          wall: "___",
+        }
+      };
+      
+      //Controller
+      function choose(button, key) {
+        state.choices[key] = button.innerText;
+        renderApp();
+      }
+      //View
+        function renderApp() {
+            document.getElementById('app').innerHTML = `
+            <h1 style="text-align: center">Guess the story!</h1>
+            <div class="container">
+                <div class="buttonContainer">
+                    <button class="color ${state.choices.green === "green" ? "selected " : ""}" 
+                     onclick="choose(this, 'green')">green</button>
+                    <button class="color ${state.choices.red === "red" ? "selected " : ""}" 
+                     onclick="choose(this, 'red')">red</button>
+                    </div>
+                <div class="buttonContainer">
+                    <button class="substantiv ${state.choices.cat === "cat" ? "selected " : ""}" 
+                     onclick="choose(this, 'cat')">cat</button>
+                    <button class="substantiv ${state.choices.man === "man" ? "selected " : ""}" 
+                     onclick="choose(this, 'man')">man</button>    
+            </div>
+              <div class="buttonContainer">
+                    <button class="verb ${state.choices.stand === "stand" ? "selected " : ""}" 
+                     onclick="choose(this, 'stand')">stand</button>
+                    <button class="verb ${state.choices.jumped === "jumped" ? "selected " : ""}" 
+                     onclick="choose(this, 'jumped')">jumped</button>
+            </div>
+                <div class="buttonContainer">
+                    <button  class="locations ${state.choices.poll === "poll" ? "selected " : ""}" 
+                     onclick="choose(this, 'poll')">poll</button>
+                    <button  class="locations ${state.choices.wall === "wall" ? "selected " : ""}" 
+                     onclick="choose(this, 'wall')">wall</button>
+            </div>
+          </div>
+            
+            <div class="story">
+                <p>
+                    The <span>${state.choices.green}</span> <span>${state.choices.cat}</span>
+                    watched as the <span>${state.choices.red}</span> <span>${state.choices.man}</span>
+                    tried to <span>${state.choices.stand}</span> on a <span>${state.choices.poll}</span>, 
+                    then suddenly <span>${state.choices.jumped}</span> over the <span>${state.choices.wall}</span>.
+                </p>
+            </div>
+          `;
+            
+        }
+      renderApp();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForLoopMedStrings</title>
+</head>
+<body>
+    <div id="num"></div>
+
+<script>
+    
+    function tellVokaler(tekst) {
+        let aCounter = 0;
+        let eCounter = 0;
+        let iCounter = 0;
+        let oCounter = 0;
+        let uCounter = 0;
+        let yCounter = 0;
+        let æCounter = 0;
+        let øCounter = 0;
+        let åCounter = 0;
+        
+        for (let i = 0; i < tekst.length; i++) {
+            let bokstav = tekst[i].toLowerCase();
+            
+            if (bokstav === "a") aCounter++;
+            else if (bokstav === "e") eCounter++;
+            else if (bokstav === "i") iCounter++;
+            else if (bokstav === "o") oCounter++;
+            else if (bokstav === "u") uCounter++;
+            else if (bokstav === "y") yCounter++;
+            else if (bokstav === "æ") æCounter++;
+            else if (bokstav === "ø") øCounter++;
+            else if (bokstav === "å") åCounter++;
+        }
+        let totalVokaler = aCounter + eCounter + iCounter + oCounter + 
+            uCounter + yCounter + æCounter + øCounter + åCounter;
+        
+        document.getElementById("num").innerText = `Antall vokaler: ${totalVokaler}`;
+        
+        return totalVokaler;
+    }
+    
+    let tekst = "dette er en test";
+    let antallVokaler = tellVokaler(tekst);
+    console.log("antall vokaler:", tellVokaler(tekst));
+</script>
+    
+</body>
+</html>
+Oppgave:
+Lag en funksjon som teller opp antall vokaler i en string ved hjelp av en for-løkke
+Vokaler: a, e, i, o, u, y, æ, ø, å
+Bruk en variabel for hver av vokalene feks let aCounter  = 0 som plusses oppover dersom du finner bokstaven i tekststringen

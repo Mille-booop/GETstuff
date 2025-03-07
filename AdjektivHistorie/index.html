@@ -56,20 +56,20 @@
   <h1 style="text-align: center">Guess the story!</h1>
   <div class="container">
     <div class="buttonContainer">
-      <button class="color" onclick="choose(this)">green</button>
-      <button class="color" onclick="choose(this)">red</button>
+      <button class="color" onclick="choose(this, 'green')">green</button>
+      <button class="color" onclick="choose(this, 'red')">red</button>
     </div>
     <div class="buttonContainer">
-      <button class="substantiv"onclick="choose(this)">cat</button>
-      <button class="substantiv"onclick="choose(this)">man</button>    
+      <button class="substantiv"onclick="choose(this, 'cat')">cat</button>
+      <button class="substantiv"onclick="choose(this, 'man')">man</button>    
     </div>
     <div class="buttonContainer">
-      <button class="verb"onclick="choose(this)">stand</button>
-      <button class="verb"onclick="choose(this)">jumped</button>
+      <button class="verb"onclick="choose(this, 'stand')">stand</button>
+      <button class="verb"onclick="choose(this, 'jumped')">jumped</button>
     </div>
     <div class="buttonContainer">
-      <button  class="locations" onclick="choose(this)">poll</button>
-      <button  class="locations"onclick="choose(this)">wall</button>
+      <button  class="locations" onclick="choose(this, 'poll')">poll</button>
+      <button  class="locations"onclick="choose(this, 'wall')">wall</button>
     </div>
   </div>
   
@@ -77,30 +77,20 @@
     <p>The <span id="green">___</span> <span id="cat">___</span>
       watched as the <span id="red">___</span> <span id="man">___</span>
       tried to <span id="stand">___</span> on a <span id="poll">___</span>, then suddenly
-      <span id="jumped">___</span>over the<span id="wall">___</span>.</p>
+      <span id="jumped">___</span> over the <span id="wall">___</span>.</p>
   </div>
 
   <script>
-      let selectedWords = [];
 
-      function choose(button) {
+      function choose(button, spanId) {
         let word = button.innerText;
-        if (selectedWords.includes(word)) return;
+        let spanElement =  document.getElementById(spanId);
 
-        selectedWords.push(word);
-        button.classList.add('selected');
-
-        let spanbox = document.querySelector('.story span:contains("___")');
-        if (!spanbox) {
-          spanbox = [...document.querySelectorAll('.story span')].find
-          (span => span.innerText === "___");
-        }
-        if (spanbox) {
-          spanbox.innerText= word;
+        if (spanElement) {
+          spanElement.innerText = word;
+          button.classList.add("selected");
         }
       }
-      
-    
   </script>
 </body>
 </html>

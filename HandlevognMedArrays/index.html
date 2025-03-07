@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handlevogn</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: lightgray;
+        }
+
+        input {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: lightblue;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: seashell;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Min handlevogn</h1>
+    <input type="text" id="itemInput" placeholder="Legg til varer her">
+    <button onclick="addToCart()">Putt i vogna!</button>
+
+    <h2>Handlevogn</h2>
+    <ul id="cartList"></ul>
+
+    <script>
+        let cart = [];
+
+        function addToCart() {
+            let item = document.getElementById('itemInput').value;
+            
+            if(item === '') {
+                alert('Hva trenger du i butikken i dag?');
+                return;
+            }
+            cart.push(item);
+            document.getElementById('itemInput').value = '';
+            updateCartView();
+        }
+            function updateCartView() {
+                const cartList = document.getElementById('cartList');
+                cartList.innerHTML = '';
+
+                for(let i = 0; i < cart.length; i++) {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = cart[i];
+                    cartList.appendChild(listItem);
+                }
+                
+            }
+    </script>
+</body>
+</html>

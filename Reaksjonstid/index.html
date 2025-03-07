@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I am Speed</title>
+    <style>
+        body {
+            background-color: lightgray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #timeDisplay {
+            font-size: large;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+ 
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .lamp {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        
+        .lightOn {
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <p id="timeDisplay">Tid: -- sekunder</p>
+    <div class="grid" id="container"></div>
+    <script>
+        let selectedLampIndex =-1;
+        let startTime = 0;
+
+        function updateView() {
+            const container = document.getElementById("container");
+            container.innerHTML = "";
+
+            for (let i = 0; i < 25; i++) {
+                const div = document.createElement("div");
+                div.classList.add("lamp");
+                
+                if (i === selectedLampIndex) {
+                    div.classList.add("lightOn");
+                    div.onclick = controller;
+                }
+                
+                container.appendChild(div);
+            }
+        }
+        function controller() {
+            if (startTime !== 0) {
+                let finishTime = new Date().getTime();
+                let spentMilliseconds = finishTime - startTime;
+                let spentSeconds = (spentMilliseconds / 1000).toFixed(2);
+                document.getElementById("timeDisplay").textContent = 
+                `Tid: ${spentSeconds} sekunder`;
+            }
+
+            selectedLampIndex = Math.floor(Math.random() * 25);
+            startTime = new Date().getTime();
+            updateView();
+        }
+
+        controller();
+    </script>
+</body>
+</html>

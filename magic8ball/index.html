@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball</title>
+    <style>
+        #answer {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get Your Life Straight</h1>
+    <div id="app"></div>
+    <button onclick="showAnswer()">May I predict your future, sire?</button>
+    <p id="answer"></p>
+    <script>
+        const answers = [
+            "Certainly", 
+            "No", 
+            "Possibly", 
+            "Definetly", 
+            "Ask me again later", 
+            "Not likely"
+        ];
+        let lastAnswer = "";
+
+        function getRandomAnswer() {
+            let newAnswer;
+            do {
+                newAnswer = answers[Math.floor(Math.random() * answers.length)];
+            } while (newAnswer === lastAnswer);
+
+            lastAnswer = newAnswer;
+            return newAnswer;
+        }
+
+        function showAnswer() {
+            const answerElement = document.getElementById("answer");
+            answerElement.style.opacity = 0;
+            setTimeout(() => {
+                answerElement.textContent = getRandomAnswer();
+                answerElement.style.opacity = 1;
+            }, 500);
+        }
+    </script>
+</body>
+</html>

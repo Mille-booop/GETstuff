@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loope i Arrays</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const app = document.getElementById('app');
+        const pocketStuff = ['Hat', 'Pencil', 'Dinosaur', 'Showercap', 'Piece of Tape'];
+
+        view();
+        function view() {
+            let html = ``;
+            html += `<button onclick="seeWhatsInPockets()">See Contents of Pockets</button>
+            `;
+            app.innerHTML = html;
+        }
+
+        function seeWhatsInPockets() {
+            let html = `<ul>`;
+            for(let i = 0; i < pocketStuff.length; i++) {
+                console.log(`På runde ${i} i loopen så ser jeg ${pocketStuff[i]}`);
+                html += `<li>${pocketStuff[i]}</li>`;
+            }
+            html += `</ul>`
+            app.innerHTML = html;
+
+            button.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

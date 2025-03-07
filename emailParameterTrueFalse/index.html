@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Input</title>
+</head>
+<body>
+    <input type="text" id="inputField" placeholder="Skriv her">
+    <button onclick="checkEmail()">Sjekk</button>
+    <p id="result"></p>
+    <script>
+        function isEmailValid(text) {
+        return  text.includes("@") &&
+                !text.includes(" ") &&
+                text.indexOf(".") > text.indexOf("@");
+        }
+
+        function checkEmail() {
+            const inputText = document.getElementById("inputField").value;
+            const result = isEmailValid(inputText);
+            document.getElementById("result").textContent = result ? 
+            "Eposten er gyldig" : "Eposten er ikke gyldig";
+        }
+    </script>
+</body>
+</html>

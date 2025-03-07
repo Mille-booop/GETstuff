@@ -20,20 +20,18 @@
 </head>
 <body>
     <h1>Før og etter formatering</h1>
-    <p><span id="original">terje</span></p>
+    <p><span id="original">martin</span></p>
     <button onclick="formaterOgVis()">Formater</button>
     <p><span id="output">...</span></p>
 
     <script>
         function formaterStreng(tekst) {
-            if (typeof tekst !== "string" || tekst.length === 0) {
+            return tekst ? tekst[0].toUpperCase() + tekst.slice(1) : "";
                 return "Ugyldig input";
             }
-        }
-        return tekst.charAt(0).toUpperCase() + tekst.substring(1);
         
         function formaterOgVis() {
-            const originalTekst = "terje";
+            const originalTekst = "martin";
             const formatertTekst = formaterStreng(originalTekst);
             document.getElementById("output").innerText = formatertTekst;
         }
