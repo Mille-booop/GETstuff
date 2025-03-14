@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperMarioSpill</title>
+</head>
+<body>
+    <div id="app"></div>
+    <button onclick="selectCharacter('superMario')">SuperMario</button>
+    <button onclick="selectCharacter('luigi')">Luigi</button>
+    <button onclick="selectCharacter('peach')">Peach</button>
+    <button onclick="selectCharacter('yoshi')">Yoshi</button>
+
+    <button onclick="bowserAttacks()">Bowser Attacks</button>
+    <button onclick="characterAttacks()">Attack Back</button>
+    
+    <script>
+        function selectCharacter(character) {
+            let selectedCharacter;
+
+            if (character === 'superMario') {
+                selectedCharacter = superMario;
+            } else if (character === 'luigi') {
+                selectedCharacter = luigi;
+            } else if (character === 'peach') {
+                selectedCharacter = peach;
+            } else if (character === 'yoshi') {
+                selectedCharacter = yoshi;
+            }
+
+            document.getElementById("app").innerHTML = `
+            <h1>Du har valgt: ${selectedCharacter.name}</h1>
+            <p>HP: ${selectedCharacter.HP}</p>
+            `;
+        }
+
+        let superMario = {
+            name: "superMario",
+            HP: 100,
+            image: ""
+        }
+        let luigi = {
+            name: "luigi",
+            HP: 140,
+            image: ""
+        }
+        let peach = {
+            name: "peach",
+            HP: 100,
+            image: ""
+        }
+        let yoshi = {
+            name: "yoshi",
+            HP: 80,
+            image: ""
+        }
+        let bowser = {
+            name: "bowser",
+            HP: 300,
+            image: ""
+        }
+        let toad = {
+            name: "toad",
+            skill: life, // gir liv til karakteren
+            image: ""
+        }
+        let bowsershroom = {
+            name: "bowsershroom",
+            skill: life, //gir liv til bowser
+            image: ""
+        }
+
+        //lag view som select character type
+
+        function life(character) {
+            character.HP += 200;
+        }
+
+        function bowserAttacks() {
+            selectedCharacter.HP -= 50;
+
+            document.getElementById("app").innerHTML = `
+            <h1>Du har valgt: ${selectedCharacter.name}</h1>
+            <p>HP: ${selectedCharacter.HP}</p>
+            `;
+        }
+
+        function characterAttacks() {
+            bowser.HP -= 50;
+
+            document.getElementById("app").innerHTML = `
+            <h1>Du har valgt: ${selectedCharacter.name}</h1>
+            <p>HP: ${selectedCharacter.HP}</p>
+            <h2> BowserHP: ${bowser.HP}</h2>
+            `;
+        }
+
+
+    </script>
+</body>
+</html>
+Dersom du har med bildene av soppene kan disse settes ved 
+siden av karakterene i kombat - og regenerere helsen dems. 
