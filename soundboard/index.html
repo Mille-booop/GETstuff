@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySoundboard</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: lightgray;
+            color: white;
+        }
+
+        .soundboard {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .sound-button {
+            background: whitesmoke;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .sound-button:hover {
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵MySoundboard🎵</h1>
+
+    <div class="soundboard">
+        <div class="sound-button" onclick="playSound('sound1')">Moo</div>
+        <div class="sound-button" onclick="playSound('sound2')">Goat</div>
+        <div class="sound-button" onclick="playSound('sound3')">Horse</div>
+        <div class="sound-button" onclick="playSound('sound4')">Wolf</div>
+    </div>
+
+    <audio id="sound1" src="cow-mooing-type-02-293304.mp3"></audio>
+    <audio id="sound2" src="man-shout-like-a-goat-105005.mp3"></audio>
+    <audio id="sound3" src="horse-neighing-type-02-293307.mp3"></audio>
+    <audio id="sound4" src="wolf-howl-6310.mp3"></audio>
+
+    <script>
+        function playSound(soundId) {
+            let sound = document.getElementById(soundId);
+            sound.currentTime = 0;
+            sound.play();
+        }
+    </script>
+</body>
+</html>

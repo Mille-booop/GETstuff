@@ -4,101 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperMarioSpill</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: lightgray;
+            padding: 15px;
+        }
+
+        h1 {
+            color: black;
+        }
+
+        .character-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .character-buttons button {
+            background: whitesmoke;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: medium;
+            transition: 0.2s;
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .character-buttons button:hover {
+            background: lightcyan;
+        }
+
+        .character-buttons img {
+            width: 100px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .battle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: whitesmoke;
+            border-radius: 15px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .character img {
+            width: 180px;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .actions button {
+            background: lightblue;
+            border: none;
+            padding: 10px 15px;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: medium;
+            transition: 0.2s;
+            margin: 5px;
+        }
+
+        .actions button:hover {
+            background: lightblue;
+        }
+    </style>
 </head>
 <body>
+    <div class="character-buttons"></div>
+    <button onclick="selectCharacter('SuperMario')">SuperMario</button>
+    <button onclick="selectCharacter('Luigi')">Luigi</button>
+    <button onclick="selectCharacter('Peach')">Peach</button>
+    <button onclick="selectCharacter('Yoshi')">Yoshi</button>
+    </div>
+
     <div id="app"></div>
-    <button onclick="selectCharacter('superMario')">SuperMario</button>
-    <button onclick="selectCharacter('luigi')">Luigi</button>
-    <button onclick="selectCharacter('peach')">Peach</button>
-    <button onclick="selectCharacter('yoshi')">Yoshi</button>
 
-    <button onclick="bowserAttacks()">Bowser Attacks</button>
-    <button onclick="characterAttacks()">Attack Back</button>
-    
     <script>
-        function selectCharacter(character) {
-            let selectedCharacter;
+        let selectedCharacter = null;
 
-            if (character === 'superMario') {
-                selectedCharacter = superMario;
-            } else if (character === 'luigi') {
-                selectedCharacter = luigi;
-            } else if (character === 'peach') {
-                selectedCharacter = peach;
-            } else if (character === 'yoshi') {
-                selectedCharacter = yoshi;
-            }
-
-            document.getElementById("app").innerHTML = `
-            <h1>Du har valgt: ${selectedCharacter.name}</h1>
-            <p>HP: ${selectedCharacter.HP}</p>
-            `;
-        }
-
+        
         let superMario = {
-            name: "superMario",
+            name: "SuperMario",
             HP: 100,
-            image: ""
+            image: "mario (1).png"
         }
         let luigi = {
-            name: "luigi",
+            name: "Luigi",
             HP: 140,
-            image: ""
+            image: "luigi (1).png"
         }
         let peach = {
-            name: "peach",
+            name: "Peach",
             HP: 100,
-            image: ""
+            image: "peach (1).png"
         }
         let yoshi = {
-            name: "yoshi",
+            name: "Yoshi",
             HP: 80,
-            image: ""
+            image: "yoshi (1).png"
         }
         let bowser = {
-            name: "bowser",
+            name: "Bowser",
             HP: 300,
-            image: ""
+            image: "bowser.png"
         }
-        let toad = {
-            name: "toad",
-            skill: life, // gir liv til karakteren
-            image: ""
+        
+        function selectCharacter(character) {
+            
+            if (character === 'SuperMario') {
+                selectedCharacter = superMario;
+            } else if (character === 'Luigi') {
+                selectedCharacter = luigi;
+            } else if (character === 'Peach') {
+                selectedCharacter = peach;
+            } else if (character === 'Yoshi') {
+                selectedCharacter = yoshi;
+            }
+            updateView();
         }
-        let bowsershroom = {
-            name: "bowsershroom",
-            skill: life, //gir liv til bowser
-            image: ""
-        }
-
-        //lag view som select character type
-
-        function life(character) {
-            character.HP += 200;
-        }
-
+        
         function bowserAttacks() {
-            selectedCharacter.HP -= 50;
-
-            document.getElementById("app").innerHTML = `
-            <h1>Du har valgt: ${selectedCharacter.name}</h1>
-            <p>HP: ${selectedCharacter.HP}</p>
-            `;
+            if (!selectedCharacter) return;
+            selectedCharacter.HP = Math.max(0, selectedCharacter.HP - 50);
+            updateView();
         }
-
+        
         function characterAttacks() {
-            bowser.HP -= 50;
-
+            if (!selectedCharacter) return;
+            bowser.HP = Math.max(0, bowser.HP - 50);
+            updateView();
+        }
+        
+        function updateView() {
+            if (selectedCharacter.HP === 0) {
             document.getElementById("app").innerHTML = `
-            <h1>Du har valgt: ${selectedCharacter.name}</h1>
-            <p>HP: ${selectedCharacter.HP}</p>
-            <h2> BowserHP: ${bowser.HP}</h2>
+            <h1>${selectedCharacter.name} har tapt!</h1>
+            <button onclick="location.reload()">Spill på nytt</button>
+            `;
+        return;
+        }
+        
+        if (bowser.HP === 0) {
+            document.getElementById("app").innerHTML = `
+            <h1>Du vant!</h1>
+            <button onclick="location.reload()">Spill på nytt</button>
+            `;
+        return;
+        }
+            
+        document.getElementById("app").innerHTML = `
+            <div class="battle-container">
+                <div class="character">
+                    <h1>Du har valgt: ${selectedCharacter.name}</h1>
+                    <img src="${selectedCharacter.image}" alt="${selectedCharacter.name}">
+                    <p>HP: ${selectedCharacter.HP}</p>
+                    </div>
+                    <div class="character">
+                        <h2>Bowser</h2>
+                        <img src="${bowser.image}" alt="Bowser">
+                        <p>Bowser HP: ${bowser.HP}</p>
+                    <div class="actions">
+                        <button onclick="bowserAttacks()">Bowser Attack</button>
+                        <button onclick="characterAttacks()">Attack Back</button>
+            </div>
+            </div>
             `;
         }
-
-
     </script>
 </body>
 </html>
-Dersom du har med bildene av soppene kan disse settes ved 
-siden av karakterene i kombat - og regenerere helsen dems. 
