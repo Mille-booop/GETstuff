@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ChatBot</title>
+    <style>
+        body {
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 10px;
+        }
+
+        .chat-container {
+            background-color: lightgray;
+            border-radius: 10px;
+            box-shadow: 0 4 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: large;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: whitesmoke;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+        #botResponse {
+            margin-top: 20px;
+            font-size: 16px;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+    <h1>ChatBot</h1>
+    <input type="text" id="userInput" placeholder="Hva lurer du på?"/>
+    <button onclick="userQuestion()">Spør meg!</button>
+    <p id="botResponse"></p>
+</div>
+
+    <script>
+
+    function askBot(question) {
+        const lowerQuestion = question.toLowerCase().trim().replace("?", "");
+
+        if (lowerQuestion === "hvordan går det") {
+            return "Det går bra";
+        } else if (lowerQuestion === "hva er klokka") {
+            return "Jeg har ikke klokke, men det er alltid tid for å chatte!";
+        } else {
+            return "Beklager, jeg forstår ikke spørsmålet ditt.";
+        }
+    }
+
+    function userQuestion() {
+        let userInput = document.getElementById("userInput").value;
+        let responseElement = document.getElementById("botResponse");
+
+        setTimeout(() => {
+            responseElement.textContent = askBot(userInput);
+        }, 1000);
+    }
+ 
+        //Lag en bot som tar imot spørsmål og gir et svar tilbake basert på hva du spurte om.
+        //Eksempel: Hvordan går det? => Det går supert!
+        
+        //Ekstra utfordring:
+        //Gjør det slik at det er en forsinkelse før man får svar tilbake ved å bruke setTimeout.
+    </script>
+</body>
+</html>
