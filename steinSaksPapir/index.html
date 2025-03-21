@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stein, saks, papirrrr</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <button onclick="chooseRock()">Stein</button>
+    <button onclick="chooseScissor()">Saks</button>
+    <button onclick="choosePaper()">Papir</button>
+    <script>
+        function chooseRock() {
+            let computerChoice = Math.floor(Math.random() * 3);
+            if (computerChoice === 0) {
+                alert("Uavgjort");
+            } else if (computerChoice === 1) {
+                alert("Du tapte");
+            } else {
+                alert("Du vant");
+            }
+        }
+
+        function chooseScissor() {
+            let computerChoice = Math.floor(Math.random() * 3);
+            if (computerChoice === 0) {
+                alert("Du vant");
+            } else if (computerChoice === 1) {
+                alert("Uavgjort");
+            } else {
+                alert("Du tapte");
+            }
+        }
+
+        function choosePaper() {
+            let computerChoice = Math.floor(Math.random() * 3);
+            if (computerChoice === 0) {
+                alert("Du tapte");
+            } else if (computerChoice === 1) {
+                alert("Du vant");
+            } else {
+                alert("Uavgjort");
+            }
+        }
+
+        function updateView(playerChoice, computerChoice, result) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerText = `Du valgte ${playerChoice}, computeren valgte ${computerChoice}. ${result}`;
+        }
+        //Denne oppgaven løser du med: MVC, If-setninger, variabler, parameter, Math.random() og funksjoner
+        //I denne oppgaven skal du lage et klassisk "Stein, saks, papir" spill
+        //Lag tre klikkbare diver/bilder/etc. Når spilleren klikker på en av tingene skal computeren også velge
+        //et tilfeldig valg ut fra alternativene som er tilgjengelig Bruk if-setninger og lag logikk for hva som 
+        //slår hva Vis på skjermen hva spilleren har valgt - og hva computeren har valgt Vis hvem som vant på skjermen 
+        //- eller om det ble uavgjort, og mulighet for å starte spillet på nytt
+    </script>
+    
+</body>
+</html>

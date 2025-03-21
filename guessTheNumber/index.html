@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessTheNumber</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <input type="number" id="userInput" placeholder="GuessTheNumber"/>
+    <button onclick="checkNumber()">Sjekk</button>
+    <div id="result"></div>
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkNumber() {
+            const userInput = parseInt(document.getElementById('userInput').value);
+            if (isNaN(userInput)) {
+                updateView('Vennligst skriv et tall');
+                return;
+
+            } if (userInput < randomNumber) {
+                updateView('Høyere!');
+            } else if (userInput > randomNumber) {
+                updateView('Lavere!');
+            } else {
+                updateView('Riktig!');
+                document.body.style.backgroundColor = getRandomColor();
+                showPopup();
+                throwConfetti();
+            }
+        }
+
+        function updateView(message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerText = message;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function showPopup() {
+            const popup = document.createElement('div');
+            popup.innerText = 'Riktig!';
+            popup.style.position = 'fixed';
+            popup.style.top = '50%';
+            popup.style.left = '50%';
+            popup.style.transform = 'translate(-50%, -50%)';
+            popup.style.background = 'rgba(0, 0, 0, 0.8)';
+            popup.style.color = '#fff';
+            popup.style.padding = '20px 40px';
+            popup.style.fontSize = '2rem';
+            popup.style.borderRadius = '10px';
+            popup.style.zIndex = '9999';
+            document.body.appendChild(popup);
+
+            setTimeout(() => popup.remove(), 3000);
+        }
+
+        function throwConfetti() {
+            const confettiCount = 100;
+            for (let i = 0; i < confettiCount; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            document.body.appendChild(confetti);
+
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            confetti.style.backgroundColor = getRandomColor();
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .confetti {
+        width: 10px;
+        height: 10px;
+        position: fixed;
+        border-radius: 50%;
+        animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+        to {
+        transform: translateY(100vh);
+        }
+        }
+        `;
+        document.head.appendChild(style);
+        //Denne oppgaven løser du med: MVC, If/Else og Math.random().
+        //I denne oppgaven skal du lage et spill hvor datamaskinen velger et tall og spilleren skal gjette hvilket tall som er valgt. 
+        // Man skal få feedback på om man har gjettet for høyt, for lavt eller gjettet tallet.
+        //Løs oppgaven med MVC.
+
+        //1. Lag et input felt hvor man kan skrive inn tall å tippe på 
+        // 2. Lag en knapp som sjekker om tallet er for høyt, for lavt eller om man har gjettet riktig. 
+        // 3. Vis om man har gjettet for høyt eller for lavt - eller riktig 
+        // 4. Om man gjetter riktig - vis det på skjermen på en artig måte
+    </script>
+    
+</body>
+</html>
