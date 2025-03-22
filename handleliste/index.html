@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: whitesmoke;
+        }
+
+        #app {
+            text-align: center;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: medium;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .edit, .delete {
+            margin-left: 10px;
+            cursor: pointer;
+            color: red;
+        }
+
+        .edit {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Handleliste</h1>
+        <form id="itemForm">
+            <input type="text" id="itemInput" placeholder="Legg til vare">
+            <button type="submit">Legg til</button>
+        </form>
+        <ul id="itemList"></ul>
+    </div>
+    <script>
+        let items = [];
+
+        document.getElementById('itemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            addItem();
+        });
+
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const itemName = itemInput.value.trim();
+            if (itemName !== "") {
+                items.push(itemName);
+                itemInput.value = "";
+                renderList();
+            }
+        }
+
+        function deleteItem(index) {
+            items.splice(index, 1);
+            renderList();
+        }
+
+        function editItem(index) {
+            const newName = prompt("Endre varenavn:", items[index]);
+            if (newName !== null && newName !== "") {
+                items[index] = newName.trim();
+                renderList();
+            }
+        }
+
+        function renderList() {
+            const itemList = document.getElementById('itemList');
+            itemList.innerHTML = "";
+            items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${item}</span>
+                    <span>
+                        <span class="edit" onclick="editItem(${index})">✏️</span>
+                        <span class="delete" onclick="deleteItem(${index})">❌</span>
+                    </span>
+                `;
+                itemList.appendChild(li);
+            });
+        }
+    </script>
+    Handleliste 🛒
+
+    Lag din egen handleliste der man kan:
+    
+    Vise alle varer som er lagt til i handlelisten
+    Kunne legge til ny vare
+    Slette en valgt vare
+    Endre navn på en valgt vare
+    Bruk MVC, variabler, arrays og for-løkker for å løse oppgaven.
+</body>
+</html>

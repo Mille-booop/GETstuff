@@ -4,44 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stein, saks, papirrrr</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: whitesmoke;
+        }
+
+        #app {
+            text-align: center;
+        }
+
+        button {
+            background-color: lightgray;
+            color: black;
+            padding: 15px 32px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: medium;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: darkgray;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: large;
+            font-weight: bold;
+            color: rgb(9, 9, 9);
+        }
+    </style>
 </head>
 <body>
     <div id="app"></div>
 
-    <button onclick="chooseRock()">Stein</button>
-    <button onclick="chooseScissor()">Saks</button>
-    <button onclick="choosePaper()">Papir</button>
+    <button onclick="playGame('rock')">Stein</button>
+    <button onclick="playGame('scissors')">Saks</button>
+    <button onclick="playGame('paper')">Papir</button>
+    
+    <div id="result"></div>
     <script>
-        function chooseRock() {
-            let computerChoice = Math.floor(Math.random() * 3);
-            if (computerChoice === 0) {
-                alert("Uavgjort");
-            } else if (computerChoice === 1) {
-                alert("Du tapte");
-            } else {
-                alert("Du vant");
-            }
+        function playGame(playerChoice) {
+            const choices = ['rock', 'scissors', 'paper'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            const result = getResult(playerChoice, computerChoice);
+            updateView(playerChoice, computerChoice, result);
         }
 
-        function chooseScissor() {
-            let computerChoice = Math.floor(Math.random() * 3);
-            if (computerChoice === 0) {
-                alert("Du vant");
-            } else if (computerChoice === 1) {
-                alert("Uavgjort");
+        function getResult(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                return 'Uavgjort';
+            } else if (playerChoice === 'rock' && computerChoice === 'scissors' ||
+                playerChoice === 'scissors' && computerChoice === 'paper' ||
+                playerChoice === 'paper' && computerChoice === 'rock') {
+                return 'Du vant';
             } else {
-                alert("Du tapte");
-            }
-        }
-
-        function choosePaper() {
-            let computerChoice = Math.floor(Math.random() * 3);
-            if (computerChoice === 0) {
-                alert("Du tapte");
-            } else if (computerChoice === 1) {
-                alert("Du vant");
-            } else {
-                alert("Uavgjort");
+                return 'Du tapte';
             }
         }
 
@@ -49,6 +73,8 @@
             const resultDiv = document.getElementById('result');
             resultDiv.innerText = `Du valgte ${playerChoice}, computeren valgte ${computerChoice}. ${result}`;
         }
+    
+
         //Denne oppgaven løser du med: MVC, If-setninger, variabler, parameter, Math.random() og funksjoner
         //I denne oppgaven skal du lage et klassisk "Stein, saks, papir" spill
         //Lag tre klikkbare diver/bilder/etc. Når spilleren klikker på en av tingene skal computeren også velge

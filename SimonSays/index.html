@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says WebEdition</title>
+</head>
+<body>
+    <div id="app">
+        <div id="game">
+            <div id="score">Score: 0</div>
+            <div id="colors">
+                <div id="red" class="color" onclick="checkColor('red')"></div>
+                <div id="blue" class="color" onclick="checkColor('blue')"></div>
+                <div id="green" class="color" onclick="checkColor('green')"></div>
+                <div id="yellow" class="color" onclick="checkColor('yellow')"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let game = document.getElementById('game');
+        let colors = ['red', 'blue', 'green', 'yellow'];
+        let sequence = [];
+        let userSequence = [];
+        let score = 0;
+
+        function startGame() {
+            sequence = [];
+            userSequence = [];
+            score = 0;
+            game.style.pointerEvents = 'none';
+            game.style.opacity = 0.5;
+            nextSequence();
+        }
+
+        function nextSequence() {
+            let randomColor = document.getElementById(colors[Math.floor(Math.random() * colors.length)]);
+                sequence.push(randomColor.id);
+                playSequence();
+        }
+
+        function playSequence() {
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                    game.style.pointerEvents = 'auto';
+                    game.style.opacity = 1;
+                    return;
+                }
+            }
+        )
+        }
+
+        function checkColor(color) {
+            userSequence.push(color);
+            if (userSequence[userSequence.length - 1] !== sequence[userSequence.length - 1]) {
+                alert('Game Over! Your score: ' + score);
+                startGame();
+                return;
+            }
+            if (userSequence.length === sequence.length) {
+                score++;
+                document.getElementById('score').innerText = 'Score: ' + score;
+                userSequence = [];
+                nextSequence();
+            }
+        }
+
+        startGame();
+
+</script>
+    
+</body>
+Simon says!
+
+Lag en web-utgave av spillet simon says. Du kan ha fire forskjellige firkanter 
+av ulik farge som skal 'blinke'. Lag en tekst som holder styr på poengsummen 
+til brukeren. Start med et 'blink', øk deretter med et ekstra blink i en random 
+av fargene per tur. Brukeren skal trykke på de samme fargene som blir generert 
+av datan. Trykker brukeren feil, mister den et poeng, mens trykker brukeren 
+riktig, får de et poeng! Du må holde styr på alle trykkene dataene har generert 
+i riktig rekkefølge, samt trykkene brukeren utfører.
+
+Oppgaven løses med arrays, on-click, funksjoner med parameter
+</html>

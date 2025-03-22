@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: whitesmoke;
+        }
+
+        #app {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: medium;
+            width: 300px;
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: lightgray;
+            color: black;
+            padding: 15px 32px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: medium;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: darkgray;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: large;
+            font-weight: bold;
+            color: rgb(9, 9, 9);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="question" placeholder="Still et spørsmål til orakelet!">
+        <button onclick="ask()">Spør</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function ask() {
+            let question = document.getElementById("question").value;
+            let answers = ["Ja", "Nei", "Kanskje", "Spør igjen senere", "Det er usikkert", 
+            "Det er sannsynlig", "Det er usannsynlig", "Det er mulig", "Det er umulig", "Det er tvilsomt"];
+
+            if (question.trim() === "") {
+                document.getElementById("result").innerText = "Hva lurer du på?";
+            } else {
+                let randomIndex = Math.floor(Math.random() * answers.length);
+                let randomAnswer = answers[randomIndex];
+                document.getElementById("result").innerText = randomAnswer;
+            }
+        }
+    </script>
+</body>
+</html>

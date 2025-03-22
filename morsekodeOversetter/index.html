@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morsekode Oversetter</title>
+    <style>
+        #input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: lightgray;
+            font-size: 16px;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #output {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Skriv inn tekst">
+    <div id="output">Morse kommer her</div>
+
+    <script>
+        const morseCodeArray = [ '.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....',
+            '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...',
+            '-', '..-', '...-', '.--', '-..-', '-.--', '--..', ' ', '·−·−', '−−−·', '·−−·−'];
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter'){
+
+                const text = input.value;
+                let morseCode = '';
+                for (let i = 0; i < text.length; i++) {
+                    const char = text[i].toUpperCase();
+                    const index = char.charCodeAt(0) - 65;
+                    if (index >= 0 && index < morseCodeArray.length) {
+                        morseCode += morseCodeArray[index] + ' ';
+                    }
+                }
+                output.textContent = morseCode;
+            }
+        });
+
+
+    </script>
+</body>
+Oppgave - Morsekode Oversetter[edit]
+Denne oppgaven løser du med
+MVC, array, variabler og for-løkke
+I denne oppgaven skal du gjøre det mulig å skrive vanlig tekst inn i et inputfelt 
+og få oversatt teksten til morsekode ved å trykke enter.
+
+Bruk MVC oppsettet og lag et input for å skrive tekst. Ta vare på det som skrives 
+i textfeltet Bruk morse kode arrayet vedlagt nedenfor til å slå opp en og en bokstav 
+i og oversette - vis morsekoden på skjermen
+
+const morseCodeArray = [ '.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', 
+'..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', 
+'..-', '...-', '.--', '-..-', '-.--', '--..', ' ', '·−·−', '−−−·', '·−−·−'];
+</html>
