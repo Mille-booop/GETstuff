@@ -4,6 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Says WebEdition</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #game {
+            display: grid;
+            grid-template-columns: (2, 300px);
+            grid-template-rows: (2, 300px);
+            align-items: center;
+        }
+        #score {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #colors {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .color {
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #red { background-color: red; }
+        #blue { background-color: blue; }
+        #green { background-color: green; }
+        #yellow { background-color: yellow; }
+        #game.over #red, #game.over #blue, #game.over #green, #game.over #yellow {
+            opacity: 0.5;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -22,6 +61,7 @@
         let colors = ['red', 'blue', 'green', 'yellow'];
         let sequence = [];
         let userSequence = [];
+        let userInpus = [];
         let score = 0;
 
         function startGame() {
@@ -45,7 +85,7 @@
                 if (i >= sequence.length) {
                     clearInterval(interval);
                     game.style.pointerEvents = 'auto';
-                    game.style.opacity = 1;
+                    game.style.borderColor = 'black';
                     return;
                 }
             }
