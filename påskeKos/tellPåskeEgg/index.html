@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tell påske eggene</title>
+</head>
+<body>
+    <div id="result">Vinneren er: </div>
+    <script>
+        var vinner = null;
+        const eggFunnet = [
+            { navn: "Benjamin", antall: 2 },
+            { navn: "Christopher", antall: 4 },
+            { navn: "Mahder", antall: 5 },
+            { navn: "Mille", antall: 7 },
+            { navn: "Vårin", antall: 8 },
+            ];
+
+        function mostEggs() {
+            for (let i = 0; i < eggFunnet.length; i++) {
+            let person = eggFunnet[i];
+
+            if (vinner === null || person.antall > vinner.antall) {
+                vinner = person;
+            }
+        }
+
+            document.getElementById('result').innerText = 
+            `Vinneren av PåskeEggJakten eeeeeeer....: ${vinner.navn} med ${vinner.antall} egg!`;
+            return;
+        }
+
+        mostEggs();
+    </script>
+    
+</body>
+<!-- Lag et program som bruker en array til å lagre hvor mange 
+påskeegg hver person har funnet. 
+Skriv en funksjon som finner ut hvem som har funnet flest egg. 
+
+const eggFunnet = [
+  { navn: "Anna", antall: 5 },
+  { navn: "Jonas", antall: 8 },
+  { navn: "Emil", antall: 3 }
+];
+
+// TODO: Lag en funksjon som returnerer personen med flest egg -->
+
+</html>

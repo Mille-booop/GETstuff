@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>påskejakt</title>
+</head>
+<style>
+    body {
+        background-color: #FFF8;
+    }
+
+    .egg {
+        margin: 0 auto;
+        display: block;
+        width: 126px;
+        height: 180px;
+        background-color: lightblue;
+        border: solid 1px black;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+</style>
+<body>
+    <div id="app"></div>
+        <div class="egg"></div>
+    <button onclick="startGame()">Finn egg!</button>
+</body>
+<script>
+    function startGame() {
+        let totalEgg = 0;
+
+        for (let i = 0; i < 5; i++) {
+            let eggsFound = Math.floor(Math.random() * 3) + 1;
+            console.log(`Runde ${i + 1}: Egg funnet: ${eggsFound}`)
+            console.log(`Egg funnet i denne runden: ${eggsFound}`);
+            totalEgg += eggsFound;
+        }
+
+        console.log(`Totale egg funnet: ${totalEgg}`);
+        document.getElementById('app').innerText = `Hvor mange egg du har funnet: ${totalEgg}`;
+}
+
+</script>
+
+<!-- Skriv en ”for-loop” som simulerer en eggjakt der man finner et tilfeldig antall egg (mellom 1 og 3) for hver runde. 
+Kjør loopen 5 ganger og summer opp totalt antall egg funnet, enten i en div eller i konsollen. 
+
+let totalEgg = 0;
+// TODO: Bruk en for-løkke og Math.random() for å finne egg -->
+</html>

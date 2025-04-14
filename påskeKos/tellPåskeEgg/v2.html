@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v2-dynamisk tellPåskeEggene</title>
+    <style>
+        body {
+            background-color: #85f5b9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #allResults, #result {
+            margin: 20px;
+            padding: 15px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background-color: #FFF8;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #allResults {
+            line-height: 1.6;
+        }
+
+        #result {
+            text-align: center;
+            justify-content: space-around;
+            font-weight: bold;
+        }
+
+        div {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="allResults"></div>
+    <div id="result">Vinneren er: </div>
+    <script>
+        var vinner = null;
+        const eggFunnet = [
+            { navn: "Benjamin" },
+            { navn: "Christopher" },
+            { navn: "Mahder" },
+            { navn: "Mille" },
+            { navn: "Vårin" }
+        ];
+
+        function mostEggs() {
+            const min = 1;
+            const max = 10;
+
+            let allResults = "";
+            for (let i = 0; i < eggFunnet.length; i++) {
+                eggFunnet[i].antall = Math.floor(Math.random() * (max - min + 1)) + min;
+                let person = eggFunnet[i];
+
+            if (vinner === null || person.antall > vinner.antall) {
+                vinner = person;
+            }
+
+            allResults += `${person.navn}: ${person.antall} egg<br>`;
+        }
+
+            document.getElementById('allResults').innerHTML = allResults;
+
+            let vinnere = [vinner];
+            for (let i = 0; i <eggFunnet.length; i++) {
+                if (eggFunnet[i] !== vinner && eggFunnet[i].antall === vinner.antall) {
+                    vinnere.push(eggFunnet[i]);
+                }
+            }
+
+            let vinnerTekst = vinnere.map(person => 
+                `${person.navn}: ${person.antall} egg`).join("<br>");
+            document.getElementById('result').innerText = 
+            `Vinneren av PåskeEggJakten eeeeeeer....: ${vinner.navn} med ${vinner.antall} egg!`;
+            return;
+        }
+
+        mostEggs();
+    </script>
+    
+</body>
