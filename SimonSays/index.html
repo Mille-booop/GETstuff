@@ -21,17 +21,19 @@
         }
         #score {
             font-size: 24px;
-            margin-bottom: 20px;
+            text-align: center;
+            margin: 50px;
         }
         #colors {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             justify-content: center;
             align-items: center;
         }
         .color {
             width: 100px;
             height: 100px;
-            border: 2px solid white;
+            border: 5px solid white;
             margin: 10px;
             cursor: pointer;
         }
@@ -40,7 +42,11 @@
         #green { background-color: green; }
         #yellow { background-color: yellow; }
         #game.over #red, #game.over #blue, #game.over #green, #game.over #yellow {
-            opacity: 0.5;
+        }
+
+        .blink {
+            border: solid 5px black;
+            transition: ease-in-out;
         }
     </style>
 </head>
@@ -48,6 +54,7 @@
     <div id="app">
         <div id="game">
             <div id="score">Score: 0</div>
+            <button onclick="startGame()">Start Game</button>
             <div id="colors">
                 <div id="red" class="color" onclick="checkColor('red')"></div>
                 <div id="blue" class="color" onclick="checkColor('blue')"></div>
@@ -65,31 +72,37 @@
         let score = 0;
 
         function startGame() {
+            console.log('Game started!');
             sequence = [];
             userSequence = [];
             score = 0;
-            game.style.pointerEvents = 'none';
-            game.style.opacity = 0.5;
+
             nextSequence();
         }
 
         function nextSequence() {
             let randomColor = document.getElementById(colors[Math.floor(Math.random() * colors.length)]);
+                console.log('Random color:', randomColor.id);
                 sequence.push(randomColor.id);
                 playSequence();
         }
 
         function playSequence() {
+            console.log('Playing sequence:', sequence);
             let i = 0;
             let interval = setInterval(() => {
                 if (i >= sequence.length) {
                     clearInterval(interval);
-                    game.style.pointerEvents = 'auto';
-                    game.style.borderColor = 'black';
                     return;
                 }
-            }
-        )
+                let colorElement = document.getElementById(sequence[i]);
+                colorElement.classList.add('blink');
+                setTimeout(() => {
+                    colorElement.classList.remove('blink');
+                }, 500);
+                console.log('Playing color:', sequence[i]);
+                i++;
+            }, 1000);
         }
 
         function checkColor(color) {
@@ -102,17 +115,18 @@
             if (userSequence.length === sequence.length) {
                 score++;
                 document.getElementById('score').innerText = 'Score: ' + score;
+
                 userSequence = [];
                 nextSequence();
             }
         }
 
-        startGame();
+        //startGame();
 
 </script>
     
 </body>
-Simon says!
+<!-- Simon says!
 
 Lag en web-utgave av spillet simon says. Du kan ha fire forskjellige firkanter 
 av ulik farge som skal 'blinke'. Lag en tekst som holder styr på poengsummen 
@@ -122,5 +136,5 @@ av datan. Trykker brukeren feil, mister den et poeng, mens trykker brukeren
 riktig, får de et poeng! Du må holde styr på alle trykkene dataene har generert 
 i riktig rekkefølge, samt trykkene brukeren utfører.
 
-Oppgaven løses med arrays, on-click, funksjoner med parameter
+Oppgaven løses med arrays, on-click, funksjoner med parameter -->
 </html>
