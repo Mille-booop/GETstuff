@@ -23,6 +23,8 @@
 
         #allResults {
             line-height: 1.6;
+            text-align: center;
+            justify-content: space-around;
         }
 
         #result {
@@ -78,7 +80,6 @@
                 `${person.navn}: ${person.antall} egg`).join("<br>");
             document.getElementById('result').innerText = 
             `Vinneren av PåskeEggJakten eeeeeeer....: ${vinner.navn} med ${vinner.antall} egg!`;
-            return;
         }
 
         mostEggs();
