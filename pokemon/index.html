@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokemonTrenerSpill</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4ca;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <button onclick="showPlayerPokemon()">Vis mine Pokemon!</button>
+    <button onclick="walkInGrass()">Gå i gresset</button>
+    
+    <script>
+        const pokemon = [
+            { name: "Pikachu", type: "Electric", styrke: 50 },
+            { name: "Snorlax", type: "Fighter", styrke: 90 },
+            { name: "Blastois", type: "Water", styrke: 85 },
+            { name: "Charizard", type: "Fire", styrke: 95 },
+            { name: "Haunter", type: "Dark", styrke: 70 }
+        ]
+
+        let playerPokemon = []
+        
+        function walkInGrass() {
+            const randomIndex = Math.floor(Math.random() * pokemon.length);
+            
+            const randomPokemon = pokemon[randomIndex];
+            
+            document.getElementById('app').innerHTML = `
+            Du møtte en ${randomPokemon.name}!<br>
+            Type: ${randomPokemon.type}<br>
+            Styrke: ${randomPokemon.styrke}
+            <button onclick="catchPokemon(${randomIndex})">Fang Pokemonen!</button>
+            <button onclick="walkInGrass()">Gå videre</button>
+            `;
+        }
+        
+        function catchPokemon(index) {
+            const pokemonToCatch = pokemon[index];
+
+            playerPokemon.push(pokemonToCatch);
+            document.getElementById('app').innerHTML = `
+            Du fanget ${pokemonToCatch.name}!<br><br>
+            <button onclick="walkInGrass()">Gå ut i gresset igjen</button>
+            <button onclick="fightOtherTrainer()">Kjemp mot en annen trener</button>
+            `;
+            
+        }
+        
+        function fightOtherTrainer() {
+            const randomIndex = Math.floor(Math.random() * pokemon.length);
+            const opponentPokemon = pokemon[randomIndex]
+
+            if (playerPokemon.length === 0) {
+                document.getElementById('app').innerHTML = `
+                Du har ingen Pokemon å kjempe med...
+                `;
+                return;
+            }
+
+            let html= `
+                Motstanderen sender ut ${opponentPokemon.name}!<br>
+                Type: ${opponentPokemon.type}<br>
+                Styrke: ${opponentPokemon.styrke}<br>
+                Velg en Pokemon å kjempe med:<br>
+            `;
+
+            playerPokemon.forEach((pokemon, index) => {
+                html += `
+                ${index + 1}. ${pokemon.name} (Type: ${pokemon.type}, Styrke: ${pokemon.styrke})<br>
+                <button onclick="startBattle(${index}, ${randomIndex})">Velg Pokemon</button><br>
+                `;
+        });
+            document.getElementById('app').innerHTML = html;
+        }
+        
+        function startBattle(playerIndex, opponentIndex) {
+            const playerChosenPokemon = playerPokemon[playerIndex];
+            const opponentPokemon = pokemon[opponentIndex];
+            
+            let result = '';
+            if (playerChosenPokemon.styrke > opponentPokemon.styrke) {
+                result = `
+                Din ${playerChosenPokemon.name} vant mot ${opponentPokemon.name}!
+                `;
+            } else if (playerChosenPokemon.styrke < opponentPokemon.styrke) {
+                result = `
+                Din ${playerChosenPokemon.name} tapte mot ${opponentPokemon.name}!
+                `;
+            } else {
+                result = `
+                Kampen mellom ${playerChosenPokemon.name} og ${opponentPokemon.name}
+                endte uavgjort!
+                `;
+            }
+
+            document.getElementById('app').innerHTML = `
+                ${result}<br><br>
+                <button onclick="walkInGrass()">Gå ut i gresset igjen</button>
+                <button onclick="fightOtherTrainer()">Kjemp mot en annen trener</button>
+                `;
+        }
+        
+        function showPlayerPokemon() {
+            if (playerPokemon.length === 0) {
+                document.getElementById('app').innerHTML = `
+                Du har ingen Pokemon ennå!<br><br>
+                <button onclick="walkInGrass()">Gå ut i gresset igjen</button>
+                `;
+                return;
+            }
+                
+            let html = 'Dine Pokemon:<br>';
+                playerPokemon.forEach((pokemon, index) => {
+                html += `
+                ${index + 1}. ${pokemon.name} (Type: ${pokemon.type}, Styrke: ${pokemon.styrke})<br>;
+                `;
+            });
+
+            html += ` <button onclick="walkInGrass()">Gå ut i gresset igjen</button>`;
+            document.getElementById('app').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
+<!-- Lag en nettside der du er en pokemontrener!
+
+På nettsiden din kan du velge å gå i gresset, 
+eller gå i kamp mot en annen pokemontrener.
+
+Om du går i gresset kan du fange forskjellige 
+pokemon du møter på. Dersom du har en eller flere pokemen, 
+kan du velge en av dem å sende sende ut i kamp mot den 
+pokemon du møter dersom du ikke vil fange den.
+
+Løs oppgaven i MVC - med objekter og arrays av objekter -->
