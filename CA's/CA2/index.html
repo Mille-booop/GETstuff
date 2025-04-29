@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input>
+    <div id="tekstDiv">Svar</div>
+    <script>
+        let children = [
+         {name: 'LilleMille',
+        age: 7
+    } 
+        ]
+    howMany();
+
+        function howMany() {
+            for (let i = 0; i < children.length; i++) {
+
+            if (children[i].age > 6) {
+                document.getElementById('tekstDiv').innerHTML += `${children[i].name}`;
+            }
+        }
+    }
+    </script>
+</body>
+</html>
